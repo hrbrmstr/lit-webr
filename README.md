@@ -1,17 +1,10 @@
 # 🧪 Lit + WebR
 
-<status-message id="status"></status-message>
+>See it [live](https://rud.is/w/lit-webr/) before reading!
 
 ## Linking Lit's Lightweight Web Components And WebR For Vanilla JS Reactivity
 
 ### This is a Lit + WebR reproduction of the [OG Shiny Demo App](https://shiny.rstudio.com/gallery/telephones-by-region.html)
-
-
-<region-plot id="regionsOutput" svgId="lit-regions">
-  <select-list label="Select a region:" id="regionsInput"></select-list>
-</region-plot>
-
-### What's this all about then, eh?
 
 [Lit](https://lit.dev/) is a javascript library that makes it a bit easier to work with [Web Components](https://dailyfinds.hrbrmstr.dev/p/drop-227-2023-03-24-weekend-project), and is especially well-suited in reactive environments.
 
