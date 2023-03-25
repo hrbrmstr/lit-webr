@@ -1,5 +1,5 @@
 /**
- * @module status-message
+ * @module select-list
  */
 
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
@@ -7,22 +7,23 @@ import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/co
 export class SelectList extends LitElement {
 
 	static properties = {
-		id: { type: String },
-		label: { type: String },
-		options: { type: Array }
+		id: { type: String },    // gives us easy access to the id we set
+		label: { type: String }, // lets us define the label up front
+		options: { type: Array } // where the options for the popup will go
 	};
 
 	static styles = [
 		css`
 			:host {
 				display: block;
+				margin-bottom: 1rem;
 			}
 		`
 	];
 
 	constructor() {
 		super()
-		this.options = []
+		this.options = [] // start with an empty list
 	}
 	
 	render() {

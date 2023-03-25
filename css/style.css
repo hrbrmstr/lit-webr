@@ -118,8 +118,8 @@ pre {
 	overflow: auto;
 	overflow-wrap: break-word;
 	padding: 2rem;
-	margin-top: 1rem;
-	margin-bottom: 3rem;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
 	white-space: pre-wrap;
 }
 
@@ -141,17 +141,6 @@ pre code {
 
 .footnote-item p {
 	font-style: italic;
-}
-
-#svg-text {
-	margin-top: 1.05rem;
-	max-height: 600px;
-	overflow-x: scroll;
-	overflow-y: scroll;
-}
-
-#svg-1 {
-	margin-bottom: 1.05rem;
 }
 
 #selected-region {

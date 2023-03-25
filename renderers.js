@@ -11,17 +11,31 @@ export let frontMatter;
 export let currentTheme;
 export let highlighter;
 
-export async function renderIndex(
+/**
+ * Renter a markdown file directly into the body of a page,
+ * optionally including open graph tags.
+ * 
+ * @note Most "unfurlers" won't see the OG tags if dynamically rendered.
+ *       I'm using the JSON frontmatter to keep track of stuff and to 
+ *       potentially provide parameterized (via HTTP query strings) experiments.
+ *       It's super easy to change `renderFrontMatter` to `false` for "production"
+ *       after I copy the rendered OG tags into `index.html` from DevTools "inspect".
+ * @param {string} markdownFile 
+ * @param {string} theme 
+ * @param {string[]} langs 
+ * @param {boolean} renderFrontmatter 
+ */
+export async function renderMarkdownInBody(
 	markdownFile,
 	theme,
-	langs = [ 'javascript', 'r', 'json', 'md', 'xml' ],
+	langs = [ 'javascript', 'r', 'json', 'md', 'xml', 'console' ],
 	renderFrontmatter = true) {
 	
 	currentTheme = await d3.json(`themes/${theme}.json`);
 
 	await shiki.getHighlighter({
 			theme: currentTheme,
-			langs: [ 'javascript', 'r', 'json', 'md', 'xml' ]
+			langs: langs
 		})
 		.then(async highlighter => {
 

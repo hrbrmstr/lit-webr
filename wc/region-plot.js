@@ -1,4 +1,4 @@
-import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 import { unsafeSVG } from 'https://unpkg.com/lit/directives/unsafe-svg.js?module';
 
 class RegionPlot extends LitElement {
@@ -10,6 +10,15 @@ class RegionPlot extends LitElement {
 		renderFunction: { type: Function }
 	};
 	
+	static styles = [
+		css`
+			:host div {
+	      margin-top: 2rem;
+	      margin-bottom: 2rem;
+			}
+		`
+	];
+
 	async connectedCallback() {
     super.connectedCallback();
 		this.asyncSvg = await this.renderFunction(this.region, this.svgId);
@@ -47,12 +56,7 @@ class RegionPlot extends LitElement {
 		${unsafeSVG(this.asyncSvg)}
 		</div>`;
 	}
-	
-	_regionChanged(e) {
-		console.log(e)
-		this.region = e.detail.value;
-	}
-	
+		
 }
 
 customElements.define('region-plot', RegionPlot);
