@@ -16,7 +16,12 @@ serve:
 
 # sync to host
 rsync:
-  rsync --exclude .git .gitignore favicon.ico README.md justfile -avp ../lit-webr/ rud.is:~/rud.is/w/lit-webr/
+	rsync --exclude .git \
+		--exclude .gitignore \
+		--exclude favicon.ico \
+		--exclude README.md \
+		--exclude .DS_Store \
+		--exclude justfile -avp ../lit-webr/ rud.is:~/rud.is/w/lit-webr/
 
 # publish to GH
 github:
