@@ -7,7 +7,7 @@ let message = document.getElementById("status");
 message.text = "WebR Loading…"
 
 // crank up WebR
-import * as R from "./r.js";
+import * as R from "./r-embed.js";
 
 message.text = "Web R Initialized!"
 
