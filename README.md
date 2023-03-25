@@ -1,12 +1,23 @@
-### What's this all about then, eh?
+# 🧪 Lit + WebR
 
->See it [live](https://rud.is/w/lit-webr/)
+<status-message id="status"></status-message>
+
+## Linking Lit's Lightweight Web Components And WebR For Vanilla JS Reactivity
+
+### This is a Lit + WebR reproduction of the [OG Shiny Demo App](https://shiny.rstudio.com/gallery/telephones-by-region.html)
+
+
+<region-plot id="regionsOutput" svgId="lit-regions">
+  <select-list label="Select a region:" id="regionsInput"></select-list>
+</region-plot>
+
+### What's this all about then, eh?
 
 [Lit](https://lit.dev/) is a javascript library that makes it a bit easier to work with [Web Components](https://dailyfinds.hrbrmstr.dev/p/drop-227-2023-03-24-weekend-project), and is especially well-suited in reactive environments.
 
 My recent hack-y WebR experiments have been using [Reef](https://reefjs.com/getting-started/) which is an _even ligher_-weight javascript web components-esque library, and it's a bit more (initially) accessible than Lit. Lit's focus on "Web Components-first" means that you are kind of forced into a structure, which is good, since reactive things can explode if not managed well.
 
-I also think this might make Shiny folks feel a bit more at home.
+I also think this might Shiny folks feel a bit more at home.
 
 This is the structure of our Lit + WebR example _(I keep rejiggering this layout, which likely frustrates alot of folks_ 🙃)_
 
@@ -60,9 +71,9 @@ The next big change is in this file (the rendered `main.md`), where we use these
 
 The _intent_ of those elements is pretty clear (much clearer than the `<div>` versions), which is one aspect of components I like quite a bit.
 
-You'll also notice components are `-` crazy. That's part of the Web Components spec and is mandatory.
+You'll also notice components are `-` (dash) crazy. That's part of the Web Components spec and is mandatory.
 
-We're using pretty focused components. What I mean by that is that they're not very reusable across other projects without copy/paste. Part of that is on me since I don't do web stuff for a living. Part of it was to make it easier to show how to use them with WebR.
+We're using pretty focused components. What I mean by that is that they're not very reusable across other projects without copy/paste. Part of that is on me since I don't do web stuff for a living. Part of it was also to make it easier to show how to use them with WebR.
 
 With more modular code, plus separating out giant chunks of R source means that we can actually put the entirety of `main.js` right here _(I've removed all the annotations; please look at `main.js` to see them; we will be explaining one thing in depth here, vs there, tho.)_:
 
@@ -71,10 +82,10 @@ import { renderMarkdownInBody } from "./renderers.js";
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 await renderMarkdownInBody(
-	`main`,
-	"ayu-dark",
-	[ 'javascript', 'r', 'json', 'md', 'xml', 'console' ],
-	false
+  `main`,
+  "ayu-dark",
+  [ 'javascript', 'r', 'json', 'md', 'xml', 'console' ],
+  false
 )
 
 let message = document.getElementById("status");
@@ -107,7 +118,9 @@ message.text = "Ready"
 I want to talk a bit about this line from `main.js`:
 
 ```js
-const regionRender = await globalThis.webR.evalR(await d3.text("r-code/region-plot.R"))
+const regionRender = await globalThis.webR.evalR(
+  await d3.text("r-code/region-plot.R")
+)
 ```
 
 That fetches the source of the single R file we have in this app, evaluates it, and returns the evaluated value (which is an R `function` object) to javascript. This is the script:
@@ -184,7 +197,7 @@ export class StatusMessage extends LitElement {
   constructor() { /* initialization bits */
   render() { /* what gets called when things change */ }
 }
-// register iot
+// register it
 customElements.define('status-message', StatusMessage);
 ```
 
@@ -301,16 +314,16 @@ The other side of that (`region-plot.js`) is a bit more complex. Let's start wit
 
 ```js
 static properties = {
-  # we keep a local copy for fun
+  // we keep a local copy for fun
   region: { type: String },
   
-  # this is where our S
+  // this is where our S
   asyncSvg: { type: String },
   
-  # a DOM-accessible id string (cld be handy)
+  // a DOM-accessible id string (cld be handy)
   svgId: { type: String },
 
-  # the function to be called to render
+  // the function to be called to render
   renderFunction: { type: Function }
 };
 ```
@@ -349,7 +362,7 @@ This bit:
 ${unsafeSVG(this.asyncSvg)}
 ```
 
-is just taking our string with SVG in it and letting Lit know we really want to live dangerously. Lit does its best to help you avoid security issues and SVG are _dangerous_. 
+is just taking our string with SVG in it and letting Lit know we really want to live dangerously. Lit does its best to help you avoid security issues and SVGs are _dangerous_. 
 
 So, how _do_ we render the plot? With **two** new functions:
 
@@ -395,9 +408,9 @@ performUpdate() {
 
 That finished the wiring up on the plotting end.
 
-## Serving Locally
+## Serving 'Just' Desserts (Locally)
 
-I *highly* recommend using the tiny but aweome Rust-powered [miniserve](https://dailyfinds.hrbrmstr.dev/i/87467104/miniserve-rust) to serve things locally during development, and I'll be adding a `justfile` for that and a few other things later this weekend.
+I *highly* recommend using the tiny but awesome Rust-powered [miniserve](https://dailyfinds.hrbrmstr.dev/i/87467104/miniserve-rust) to serve things locally during development:
 
 ```console
 miniserve \
@@ -409,8 +422,21 @@ miniserve \
   .
 ```
 
+You can use that (once installed) from the local [justfile](https://github.com/casey/just), which (presently) has four semantically named actions:
+
+- install-miniserve
+- serve
+- rsync
+- github
+
+You'll need to make path changes if you decide to use it.
+
 ## FIN
 
 I realize this is quite a bit to take in, and — as I keep saying — most folks will be better off using WebR in Shiny (when available) or Quarto. 
 
-Lit gives us reactivity without the bloat that comes for the ride with Vue and React, so we get to say in Vanilla JS land. You'll notice there's not "npm" or "bundling" or "rollup" here. You get to code in whatever environment you want, and serving WebR-powered pages is, then, as simple as an `rsync`.
+Lit gives us reactivity without the bloat that comes for the ride with Vue and React, so we get to stay in Vanilla JS land. You'll notice there's no "npm" or "bundling" or "rollup" here. You get to code in whatever environment you want, and serving WebR-powered pages is, then, as simple as an `rsync`.
+
+Drop issues at [the repo](https://github.com/hrbrmstr/lit-webr).
+
+<p style="text-align:center;margin-top:2rem;">Brought to you by @hrbrmstr</p>
