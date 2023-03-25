@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telephones by region (Lit + WebR)</title>
+<meta property="og:title" content="Telephones by region (Lit + WebR)">
+<meta property="twitter:title" content="Telephones by region (Lit + WebR)">
+<meta property="og:description" content="Lit + WebR version of one of the original Shiny demo apps">
+<meta property="twitter:description" content="Lit + WebR version of one of the original Shiny demo apps">
+<meta property="og:site" content="https://rud.is/w/lit-phones-by-region">
+<meta property="og:site_name" content="WebR Exeriments">
+<meta property="og:image:url" content="https://rud.is/w/phones-by-region/img/preview.png">
+<meta property="og:image:width" content="1536">
+<meta property="og:image:height" content="768">
+<meta property="og:image:alt" content="Base R bar plot">
+<meta property="twitter:site_name" content="@hrbrmstr">
+<meta property="twitter:domain" content="rud.is">
+<meta property="twitter:image" content="https://rud.is/w/phones-by-region/img/preview.png">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2023-03-25T14:11:25.986Z"></head>
+<script type="module" src="./wc/select-list.js"></script>
+<script type="module" src="./wc/region-plot.js"></script>
+<script type="module" src="./wc/status-message.js"></script>
+<script type="module" src="./main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/shiki"></script>
+<link rel="stylesheet" href="./css/style.css">
+<body id="content">
+<p style="text-align:center">⏳ Hang tight! 🧪 Experiment is rendering.</p>
+</body>
+<h1>🧪 Lit + WebR</h1>
+
+<status-message id="status"></status-message>
+
+## Linking Lit's Lightweight Web Components And WebR For Vanilla JS Reactivity
+
+### This is a Lit + WebR reproduction of the [OG Shiny Demo App](https://shiny.rstudio.com/gallery/telephones-by-region.html)
+
+<region-plot id="regionsOutput" svgId="lit-regions">
+  <select-list label="Select a region:" id="regionsInput"></select-list>
+</region-plot>
+
+<p style="text-align:center;margin-top:2rem;">Brought to you by @hrbrmstr</p>
+
+</html>
