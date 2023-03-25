@@ -6,7 +6,7 @@
 
 My recent hack-y WebR experiments have been using [Reef](https://reefjs.com/getting-started/) which is an _even ligher_-weight javascript web components-esque library, and it's a bit more (initially) accessible than Lit. Lit's focus on "Web Components-first" means that you are kind of forced into a structure, which is good, since reactive things can explode if not managed well.
 
-I also think this might Shiny folks feel a bit more at home.
+I also think this might make Shiny folks feel a bit more at home.
 
 This is the structure of our Lit + WebR example _(I keep rejiggering this layout, which likely frustrates alot of folks_ 🙃)_
 
