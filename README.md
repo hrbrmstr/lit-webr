@@ -1,5 +1,7 @@
 ### What's this all about then, eh?
 
+>See it [live](https://rud.is/w/lit-webr/)
+
 [Lit](https://lit.dev/) is a javascript library that makes it a bit easier to work with [Web Components](https://dailyfinds.hrbrmstr.dev/p/drop-227-2023-03-24-weekend-project), and is especially well-suited in reactive environments.
 
 My recent hack-y WebR experiments have been using [Reef](https://reefjs.com/getting-started/) which is an _even ligher_-weight javascript web components-esque library, and it's a bit more (initially) accessible than Lit. Lit's focus on "Web Components-first" means that you are kind of forced into a structure, which is good, since reactive things can explode if not managed well.
